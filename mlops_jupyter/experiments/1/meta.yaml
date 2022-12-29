@@ -1,0 +1,4 @@
+artifact_location: file:///Users/princychahal/Documents/github/mlops/experiments/1
+experiment_id: '1'
+lifecycle_stage: active
+name: optimization

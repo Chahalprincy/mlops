@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/princychahal/Documents/github/mlops/mlruns/1/5201a6c4f78c4396aaa350e57d85c411/artifacts
+end_time: 1670699167620
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: active
+name: ''
+run_id: 5201a6c4f78c4396aaa350e57d85c411
+run_uuid: 5201a6c4f78c4396aaa350e57d85c411
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1670699167612
+status: 3
+tags: []
+user_id: princychahal

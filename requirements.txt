@@ -1,0 +1,17 @@
+# Add to requirements.txt
+numpy==1.19.5
+pandas==1.3.5
+pretty-errors==1.2.19
+nltk==3.7
+scikit-learn==0.24.2
+imbalanced-learn==0.8.1
+snorkel==0.9.8
+mlflow==1.23.1
+numpyencoder==0.3.0
+optuna==2.10.0
+rich==12.4.4
+fastapi==0.78.0
+uvicorn==0.17.6
+great-expectations==0.15.15
+typer==0.4.1
+
