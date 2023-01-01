@@ -32,4 +32,3 @@ python_files = "test_*.py"
 # Pytest coverage
 [tool.coverage.run]
 omit = ["app/gunicorn.py"]
-

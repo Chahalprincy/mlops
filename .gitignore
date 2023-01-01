@@ -131,7 +131,7 @@ dmypy.json
 # Data
 logs/
 stores/
-data/
+# data/
 
 # Packaging
 venv/

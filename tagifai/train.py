@@ -10,7 +10,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import SGDClassifier
 from sklearn.metrics import log_loss
 
-from config.config import logger
 from tagifai import data, evaluate, predict, utils
 
 
@@ -68,7 +67,7 @@ def train(args, df, trial=None):
         if not trial:
             mlflow.log_metrics({"train_loss": train_loss, "val_loss": val_loss}, step=epoch)
 
-        if trial: # pragma: no cover, optuna pruning
+        if trial:  # pragma: no cover, optuna pruning
             trial.report(val_loss, epoch)
             if trial.should_prune():
                 raise optuna.TrialPruned()

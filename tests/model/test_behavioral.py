@@ -46,7 +46,7 @@ def test_inv(text, tag, artifacts):
         (
             "CNNs for text classification.",
             "natural-language-processing",
-        )
+        ),
     ],
 )
 def test_dir(text, tag, artifacts):

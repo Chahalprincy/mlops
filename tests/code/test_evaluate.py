@@ -5,6 +5,7 @@ from snorkel.slicing import PandasSFApplier, slice_dataframe
 
 from tagifai import evaluate
 
+
 @pytest.fixture(scope="module")
 def df():
     data = [
@@ -15,12 +16,14 @@ def df():
     df = pd.DataFrame(data)
     return df
 
+
 @pytest.mark.parametrize(
     "f, indices",
     [(evaluate.nlp_cnn, [0]), (evaluate.short_text, [0, 1])],
 )
 def test_slice_functions(df, f, indices):
     assert slice_dataframe(df, f).index.tolist() == indices
+
 
 def test_get_slices_metrics(df):
     y_true = np.array([0, 1, 1])
@@ -31,6 +34,7 @@ def test_get_slices_metrics(df):
     assert metrics["nlp_cnn"]["recall"] == 1 / 1
     assert metrics["short_text"]["precision"] == 1 / 2
     assert metrics["short_text"]["recall"] == 1 / 2
+
 
 def test_get_metrics():
     y_true = np.array([0, 0, 1, 1])

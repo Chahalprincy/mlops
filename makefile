@@ -25,3 +25,12 @@ test:
     cd tests && great_expectations checkpoint run project.csv
     cd tests && great_expectations checkpoint run tag
     cd tests && great_expectations checkpoint run label
+
+# Makefile
+.PHONY: dvc
+dvc:
+    dvc add data/projects.csv
+    dvc add data/tags.csv
+    dvc add data/labeled_projects.csv
+    dvc push
+

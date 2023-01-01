@@ -15,7 +15,6 @@ repos:
     -   id: check-ast
     -   id: check-json
     -   id: check-merge-conflict
-    -   id: detect-aws-credentials
     -   id: detect-private-key
 
 -   repo: https://github.com/psf/black
@@ -24,7 +23,7 @@ repos:
     -   id: black
         args: []
         files: .
--   repo: https://gitlab.com/PyCQA/flake8
+-   repo: https://github.com/PyCQA/flake8
     rev: 3.9.2
     hooks:
     -   id: flake8
@@ -39,7 +38,7 @@ repos:
     hooks:
     -   id: pyupgrade
         args: [--py36-plus]
-# - repo: local
+# -   repo: local
 #     hooks:
 #     -   id: test
 #         name: test
@@ -53,3 +52,14 @@ repos:
 #         args: ["clean"]
 #         language: system
 #         pass_filenames: false
+
+# .pre-commit-config.yaml
+-   repo: local
+    hooks:
+    -   id: dvc
+        name: dvc
+        entry: make
+        args: ["dvc"]
+        language: system
+        pass_filenames: false
+

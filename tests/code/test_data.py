@@ -7,6 +7,7 @@ import pytest
 
 from tagifai import data
 
+
 @pytest.fixture(scope="module")
 def df():
     data = [
@@ -65,7 +66,6 @@ def test_replace_minority_labels(df, min_freq, unique_labels):
         ("Hello worlds", True, True, ["worlds"], "hello"),
     ],
 )
-
 def test_clean_text(text, lower, stem, stopwords, cleaned_text):
     assert (
         data.clean_text(
@@ -77,10 +77,12 @@ def test_clean_text(text, lower, stem, stopwords, cleaned_text):
         == cleaned_text
     )
 
+
 def test_preprocess(df):
     assert "text" not in df.columns
     df = data.preprocess(df=df, lower=True, stem=False, min_freq=0)
     assert "text" in df.columns
+
 
 class TestLabelEncoder:
     @classmethod
@@ -140,6 +142,7 @@ class TestLabelEncoder:
         label_encoder.fit(["apple", "apple", "banana"])
         assert np.array_equal(label_encoder.encode(y_decoded), np.array(y_encoded))
         assert label_encoder.decode(y_encoded) == y_decoded
+
 
 def test_get_data_splits(df):
     df = df.sample(frac=1).reset_index(drop=True)

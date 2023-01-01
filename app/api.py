@@ -1,23 +1,22 @@
-from http import HTTPStatus
-from typing import Dict
 from datetime import datetime
 from functools import wraps
-
+from http import HTTPStatus
 from pathlib import Path
-from config import config
-from config.config import logger
-from tagifai import main
-
-from app.schemas import PredictPayload
-from tagifai import predict
+from typing import Dict
 
 from fastapi import FastAPI, Request
+
+from app.schemas import PredictPayload
+from config import config
+from config.config import logger
+from tagifai import main, predict
 
 app = FastAPI(
     title="TagIfAI - Made With ML",
     description="Classify machine learning projects.",
     version="0.1",
 )
+
 
 @app.on_event("startup")
 def load_artifacts():
@@ -47,7 +46,7 @@ def construct_response(f):
     return wrap
 
 
-@app.get("/", tags = ["General"])
+@app.get("/", tags=["General"])
 @construct_response
 def _index(request: Request) -> Dict:
     """Health check."""
@@ -58,18 +57,20 @@ def _index(request: Request) -> Dict:
     }
     return response
 
+
 @app.get("/performance", tags=["Performance"])
 @construct_response
 def _performance(request: Request, filter: str = None) -> Dict:
     """Get the performance metrics."""
     performance = artifacts["performance"]
-    data = {"performance":performance.get(filter, performance)}
+    data = {"performance": performance.get(filter, performance)}
     response = {
         "message": HTTPStatus.OK.phrase,
         "status-code": HTTPStatus.OK,
         "data": data,
     }
     return response
+
 
 @app.get("/args/{arg}", tags=["Arguments"])
 @construct_response
@@ -97,4 +98,3 @@ def _predict(request: Request, payload: PredictPayload) -> Dict:
         "data": {"predictions": predictions},
     }
     return response
-

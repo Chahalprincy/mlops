@@ -8,18 +8,18 @@ import joblib
 import mlflow
 import optuna
 import pandas as pd
+import typer
 from numpyencoder import NumpyEncoder
 from optuna.integration.mlflow import MLflowCallback
 
 from config import config
 from config.config import logger
 from tagifai import data, predict, train, utils
-import typer
-
 
 warnings.filterwarnings("ignore")
 
 app = typer.Typer()
+
 
 @app.command()
 def elt_data():
@@ -36,11 +36,14 @@ def elt_data():
 
     logger.info("✅ Saved data!")
 
+
 @app.command()
-def train_model(args_fp : str = "config/args.json",
+def train_model(
+    args_fp: str = "config/args.json",
     experiment_name: str = "baselines",
     run_name: str = "sgd",
-    test_run: bool = False,) -> None:
+    test_run: bool = False,
+) -> None:
     """Train a model given arguments."""
     # Load labeled data
     df = pd.read_csv(Path(config.DATA_DIR, "labeled_projects.csv"))
@@ -74,6 +77,7 @@ def train_model(args_fp : str = "config/args.json",
     open(Path(config.CONFIG_DIR, "run_id.txt"), "w").write(run_id)
     utils.save_dict(performance, Path(config.CONFIG_DIR, "performance.json"))
 
+
 @app.command()
 def optimize(args_fp, study_name, num_trials):
     """Optimize hyperparameters."""
@@ -99,6 +103,7 @@ def optimize(args_fp, study_name, num_trials):
     print(f"\nBest value (f1): {study.best_trial.value}")
     print(f"Best hyperparameters: {json.dumps(study.best_trial.params, indent=2)}")
 
+
 @app.command()
 def predict_tag(text, run_id=None):
     """Predict tag for text.
@@ -107,7 +112,7 @@ def predict_tag(text, run_id=None):
         text (str): input text to predict label for.
         run_id (str, optional): run id to load artifacts for prediction. Defaults to None.
     """
-    
+
     if not run_id:
         run_id = open(Path(config.CONFIG_DIR, "run_id.txt")).read()
     artifacts = load_artifacts(run_id=run_id)

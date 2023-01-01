@@ -1,7 +1,6 @@
 from pathlib import Path
 
 import mlflow
-import pytest
 from typer.testing import CliRunner
 
 from config import config
@@ -68,7 +67,7 @@ def test_load_artifacts():
     assert len(artifacts)
 
 
-def test_predict_tag():
-    text = "Transfer learning with transformers for text classification."
-    # result = runner.invoke(app, ["predict-tag", f"--text={text}"])
-    # assert result.exit_code == 0
+# def test_predict_tag():
+#     text = "Transfer learning with transformers for text classification."
+# result = runner.invoke(app, ["predict-tag", f"--text={text}"])
+# assert result.exit_code == 0

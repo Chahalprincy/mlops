@@ -11,6 +11,9 @@ BASE_DIR = Path(__file__).parent.parent.absolute()
 CONFIG_DIR = Path(BASE_DIR, "config")
 DATA_DIR = Path(BASE_DIR, "data")
 MODEL_REGISTRY = Path(BASE_DIR, "mlruns")
+STORES_DIR = Path(BASE_DIR,"stores")
+BLOB_STORE = Path(STORES_DIR, "blob")
+BLOB_STORE.mkdir(parents=True, exist_ok=True)
 
 # create directory
 DATA_DIR.mkdir(parents=True, exist_ok=True)
